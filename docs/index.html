@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViralAI - Turn YouTube Videos into Viral Shorts</title>
+  <meta name="description" content="ViralAI is a Chrome extension that uses AI to identify viral segments in YouTube videos and convert them into engaging shorts.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="landing-page.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="assets/icon48.png" sizes="48x48">
+  <link rel="icon" type="image/png" href="assets/icon128.png" sizes="128x128">
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/icon48.png" alt="ViralAI Logo">
+        <span>ViralAI</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#download" class="cta-button nav-cta">Install Extension</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Turn YouTube Videos into <span class="gradient-text">Viral Shorts</span> with AI</h1>
+        <p>ViralAI automatically identifies the most engaging segments of any YouTube video and transforms them into attention-grabbing shorts optimized for social media.</p>
+        <div class="hero-buttons">
+          <a href="#download" class="cta-button primary-btn">
+            <i class="fas fa-download"></i> Install Free Extension
+          </a>
+          <a href="#demo" class="cta-button secondary-btn">
+            <i class="fas fa-play-circle"></i> Watch Demo
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="browser-mockup">
+          <div class="browser-header">
+            <div class="browser-actions">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="browser-address">
+              <i class="fas fa-lock"></i>
+              <span>youtube.com/watch?v=...</span>
+            </div>
+          </div>
+          <div class="browser-content">
+            <div class="extension-popup">
+              <div class="popup-header">
+                <h3><i class="fas fa-fire-alt"></i> ViralAI</h3>
+                <div class="credits">
+                  <span>1000</span> credits
+                </div>
+              </div>
+              <div class="popup-content">
+                <div class="video-info">
+                  <h4><i class="fab fa-youtube"></i> How to Master Public Speaking</h4>
+                  <p><i class="far fa-clock"></i> Duration: 15:42</p>
+                </div>
+                <div class="viral-segments">
+                  <h4>Viral Segments Detected:</h4>
+                  <div class="segment">
+                    <span class="timestamp">3:24 - 4:12</span>
+                    <div class="virality-meter">
+                      <div class="virality-fill" style="width: 85%"></div>
+                    </div>
+                    <span class="virality-score">85%</span>
+                  </div>
+                  <div class="segment">
+                    <span class="timestamp">8:45 - 9:30</span>
+                    <div class="virality-meter">
+                      <div class="virality-fill" style="width: 92%"></div>
+                    </div>
+                    <span class="virality-score">92%</span>
+                  </div>
+                </div>
+                <button class="create-short-btn">
+                  <i class="fas fa-magic"></i> Create Viral Short
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#F8F9FC" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Powerful Features</h2>
+        <p>Everything you need to create viral-worthy shorts from any YouTube video</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI-Powered Viral Detection</h3>
+          <p>Our advanced AI analyzes video content to identify segments with the highest viral potential based on engagement patterns.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cut"></i>
+          </div>
+          <h3>One-Click Extraction</h3>
+          <p>Extract the most engaging parts of any YouTube video with a single click, no video editing skills required.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-closed-captioning"></i>
+          </div>
+          <h3>Auto-Generated Subtitles</h3>
+          <p>Automatically add eye-catching subtitles to your shorts to boost engagement and accessibility.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <h3>Trending Hashtag Suggestions</h3>
+          <p>Get AI-generated hashtag recommendations to maximize the reach of your shorts.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <h3>Trending Audio Overlay</h3>
+          <p>Add popular audio tracks to your shorts to ride the latest social media trends.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <h3>TikTok Integration</h3>
+          <p>Schedule and post your viral shorts directly to TikTok from the extension.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Create viral shorts in just three simple steps</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Browse YouTube</h3>
+            <p>Navigate to any YouTube video you want to convert into a viral short.</p>
+            <div class="step-image">
+              <img src="https://via.placeholder.com/400x225" alt="Browse YouTube" class="placeholder-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Click ViralAI</h3>
+            <p>Open the ViralAI extension and let our AI identify the most viral-worthy segments.</p>
+            <div class="step-image">
+              <img src="https://via.placeholder.com/400x225" alt="Click ViralAI" class="placeholder-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Create & Share</h3>
+            <p>Generate your viral short with one click and share it directly to social media.</p>
+            <div class="step-image">
+              <img src="https://via.placeholder.com/400x225" alt="Create and Share" class="placeholder-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple Pricing</h2>
+        <p>Start for free, upgrade as you grow</p>
+      </div>
+
+      <div class="pricing-cards">
+        <div class="pricing-card free">
+          <div class="pricing-header">
+            <h3>Free</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">0</span>
+              <span class="period">/month</span>
+            </div>
+            <p>Perfect for getting started</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> 1000 Free Credits</li>
+              <li><i class="fas fa-check"></i> 1 Credit = 1 Short</li>
+              <li><i class="fas fa-check"></i> Basic Viral Detection</li>
+              <li><i class="fas fa-check"></i> Standard Quality Exports</li>
+              <li><i class="fas fa-check"></i> Basic Subtitles</li>
+              <li class="disabled"><i class="fas fa-times"></i> TikTok Integration</li>
+              <li class="disabled"><i class="fas fa-times"></i> Trending Audio Overlay</li>
+              <li class="disabled"><i class="fas fa-times"></i> Advanced Viral Analytics</li>
+            </ul>
+          </div>
+          <a href="#download" class="pricing-cta">Get Started</a>
+        </div>
+
+        <div class="pricing-card pro">
+          <div class="popular-tag">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Pro</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">9.99</span>
+              <span class="period">/month</span>
+            </div>
+            <p>For content creators</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> 5000 Credits/Month</li>
+              <li><i class="fas fa-check"></i> Advanced Viral Detection</li>
+              <li><i class="fas fa-check"></i> HD Quality Exports</li>
+              <li><i class="fas fa-check"></i> Enhanced Subtitles</li>
+              <li><i class="fas fa-check"></i> TikTok Integration</li>
+              <li><i class="fas fa-check"></i> Trending Audio Overlay</li>
+              <li><i class="fas fa-check"></i> Basic Viral Analytics</li>
+              <li class="disabled"><i class="fas fa-times"></i> White-label Exports</li>
+            </ul>
+          </div>
+          <a href="#download" class="pricing-cta">Upgrade to Pro</a>
+        </div>
+
+        <div class="pricing-card business">
+          <div class="pricing-header">
+            <h3>Business</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">29.99</span>
+              <span class="period">/month</span>
+            </div>
+            <p>For professional creators</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> Unlimited Credits</li>
+              <li><i class="fas fa-check"></i> Premium Viral Detection</li>
+              <li><i class="fas fa-check"></i> 4K Quality Exports</li>
+              <li><i class="fas fa-check"></i> Premium Subtitles</li>
+              <li><i class="fas fa-check"></i> Advanced TikTok Integration</li>
+              <li><i class="fas fa-check"></i> Custom Audio Library</li>
+              <li><i class="fas fa-check"></i> Advanced Viral Analytics</li>
+              <li><i class="fas fa-check"></i> White-label Exports</li>
+            </ul>
+          </div>
+          <a href="#download" class="pricing-cta">Go Business</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Users Say</h2>
+        <p>Join thousands of content creators who love ViralAI</p>
+      </div>
+
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"ViralAI has completely transformed my content strategy. I've seen a 300% increase in engagement since I started using it to create shorts from my longer videos."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="author-image">
+            <div class="author-info">
+              <h4>Sarah Johnson</h4>
+              <p>Travel Vlogger, 500K+ Followers</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"As a tech reviewer, I create long, detailed videos. ViralAI helps me extract the most exciting moments to share on TikTok, driving traffic back to my full reviews."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Chen" class="author-image">
+            <div class="author-info">
+              <h4>David Chen</h4>
+              <p>Tech Reviewer, 1.2M Subscribers</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The AI viral detection is scary accurate! It consistently identifies the exact moments that perform best as standalone shorts. Worth every penny."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Michelle Rodriguez" class="author-image">
+            <div class="author-info">
+              <h4>Michelle Rodriguez</h4>
+              <p>Fitness Coach, 750K+ Followers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-indicators">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="download">
+    <div class="container">
+      <div class="download-content">
+        <h2>Ready to Create Viral Shorts?</h2>
+        <p>Install the ViralAI Chrome extension for free and start creating engaging shorts from your YouTube videos today.</p>
+        <a href="https://chrome.google.com/webstore/detail/viralaiai" target="_blank" class="download-btn">
+          <i class="fab fa-chrome"></i> Add to Chrome - It's Free
+        </a>
+        <div class="browser-support">
+          <p>Also available for:</p>
+          <div class="browsers">
+            <span><i class="fab fa-firefox"></i> Firefox</span>
+            <span><i class="fab fa-edge"></i> Edge</span>
+            <span><i class="fab fa-safari"></i> Safari</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about ViralAI</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How does ViralAI identify viral segments?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>ViralAI uses advanced machine learning algorithms to analyze video content, audio transcripts, viewer engagement patterns, and emotional triggers to identify segments with the highest potential for virality. Our AI has been trained on thousands of viral videos to recognize the characteristics that make content shareable.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How many credits do I need to create a short?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Each short you create costs 1 credit. Free users start with 1000 credits, which means you can create up to 1000 shorts before needing to upgrade to a paid plan.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I use ViralAI on any YouTube video?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, ViralAI works with any public YouTube video. However, please ensure you have the appropriate rights to create derivative content from the videos you're using. We recommend using your own content or videos with Creative Commons licenses.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How long does it take to create a short?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>The process typically takes 1-3 minutes, depending on the length of the original video and the complexity of the viral segment. Our AI works quickly to analyze, extract, and enhance the content for maximum engagement.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I customize the shorts before exporting?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, ViralAI offers customization options including adding subtitles, overlaying trending audio, adjusting the aspect ratio, and adding hook text. Pro and Business users have access to more advanced customization features.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do I post my shorts to TikTok?</h3>
+            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Pro and Business users can connect their TikTok accounts directly to ViralAI and post shorts with a single click. Free users can download their shorts and manually upload them to TikTok or any other platform.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/icon48.png" alt="ViralAI Logo">
+          <h3>ViralAI</h3>
+          <p>Turn YouTube videos into viral shorts</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#download">Download</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="link-group">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="link-group">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="link-group">
+            <h4>Connect</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2023 ViralAI. All rights reserved.</p>
+        <div class="footer-support">
+          <a href="#" class="support-palestine" id="support-palestine-btn">
+            <span class="palestine-flag"></span> We Support Palestine
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Palestine Support Modal -->
+  <div id="palestine-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="palestine-modal-header">
+        <div class="palestine-flag-large"></div>
+        <h2>Stand With Palestine</h2>
+      </div>
+      <div class="palestine-modal-body">
+        <p>We stand in solidarity with the Palestinian people and their right to freedom, justice, and dignity.</p>
+
+        <div class="palestine-info">
+          <h3>How You Can Help:</h3>
+          <ul>
+            <li>
+              <i class="fas fa-heart"></i>
+              <strong>Donate:</strong> Support humanitarian aid organizations providing essential services
+            </li>
+            <li>
+              <i class="fas fa-bullhorn"></i>
+              <strong>Raise Awareness:</strong> Share accurate information about the situation
+            </li>
+            <li>
+              <i class="fas fa-hands-helping"></i>
+              <strong>Volunteer:</strong> Join local or online initiatives supporting Palestinian rights
+            </li>
+          </ul>
+        </div>
+
+        <div class="palestine-resources">
+          <h3>Resources:</h3>
+          <div class="resource-links">
+            <a href="https://www.unrwa.org/" target="_blank" class="resource-link">
+              <i class="fas fa-hand-holding-heart"></i> UNRWA
+            </a>
+            <a href="https://www.pcrf.net/" target="_blank" class="resource-link">
+              <i class="fas fa-hospital"></i> PCRF
+            </a>
+            <a href="https://www.map.org.uk/" target="_blank" class="resource-link">
+              <i class="fas fa-medkit"></i> Medical Aid
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="palestine-modal-footer">
+        <button id="palestine-learn-more" class="palestine-btn">Learn More</button>
+        <button id="palestine-close" class="palestine-btn secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="landing-page.js"></script>
+</body>
+</html>

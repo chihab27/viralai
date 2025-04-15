@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ViralAI Auto-Fix",
+  "version": "1.0",
+  "description": "Automatically fixes and enhances the ViralAI extension",
+  "permissions": [
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "chrome-extension://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["chrome-extension://*/popup.html"],
+      "js": ["popup-enhancer.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["auto-fix.js", "enhanced-viral-detection.js"],
+      "matches": ["chrome-extension://*/*"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

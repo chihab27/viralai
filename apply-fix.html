@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply ViralAI Fix</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    
+    h1 {
+      color: #ff0000;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .step {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .step:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .step-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .step-content {
+      margin-left: 40px;
+    }
+    
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: #cc0000;
+    }
+    
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .loading {
+      background-color: #e2f3f5;
+      color: #0c5460;
+    }
+    
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
+    pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+    
+    .copy-button {
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    .copy-button:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <h1>Apply ViralAI Fix</h1>
+  
+  <div class="container">
+    <div class="step">
+      <div class="step-title"><span class="step-number">1</span> Open ViralAI Extension</div>
+      <div class="step-content">
+        <p>First, open the ViralAI extension popup by clicking on its icon in the Chrome toolbar.</p>
+        <button id="open-viralaiai">Open ViralAI</button>
+        <div id="open-status" class="status"></div>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">2</span> Open Developer Tools</div>
+      <div class="step-content">
+        <p>Right-click anywhere in the ViralAI popup and select "Inspect" to open Chrome DevTools.</p>
+        <img src="https://developer.chrome.com/docs/devtools/open/inspect.png" alt="Right-click and select Inspect" style="max-width: 100%; margin-top: 10px;">
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">3</span> Paste the Fix Code</div>
+      <div class="step-content">
+        <p>In the DevTools Console tab, paste the following code and press Enter:</p>
+        <div style="position: relative;">
+          <pre id="fix-code">// Define the missing function
+window.setLatestShortResult = function(result) {
+  console.log('Setting latest short result:', result);
+  
+  // Store the result in memory
+  window.latestShortResult = result;
+  
+  // Also save to storage for persistence
+  chrome.storage.local.set({ latestShortResult: result }, () => {
+    console.log('Short result saved to storage:', result.status || 'unknown');
+  });
+  
+  return result;
+};
+
+// Define a getter function if it doesn't exist
+if (!window.getLatestShortResult) {
+  window.getLatestShortResult = function() {
+    return window.latestShortResult || null;
+  };
+}
+
+// Fix for the clipboard writeText error
+window.safeClipboardWrite = function(text) {
+  try {
+    // Try the standard clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    
+    // Fallback method using document.execCommand
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    const success = document.execCommand('copy');
+    document.body.removeChild(textArea);
+    
+    return Promise.resolve(success);
+  } catch (error) {
+    console.error('Error writing to clipboard:', error);
+    return Promise.reject(error);
+  }
+};
+
+// Patch any existing clipboard functions
+if (typeof copyToClipboard === 'function') {
+  const originalCopyToClipboard = copyToClipboard;
+  window.copyToClipboard = function(text) {
+    return safeClipboardWrite(text).catch(error => {
+      console.error('Failed to copy using safe method, trying original:', error);
+      return originalCopyToClipboard(text);
+    });
+  };
+}
+
+console.log('ViralAI direct fix applied successfully!');</pre>
+          <button class="copy-button" id="copy-code">Copy Code</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">4</span> Verify the Fix</div>
+      <div class="step-content">
+        <p>After applying the fix, close and reopen the ViralAI popup, then try creating a viral short on a YouTube video.</p>
+        <p>If you still see errors, try applying the fix to the background page as well:</p>
+        <ol>
+          <li>Go to <code>chrome://extensions/</code></li>
+          <li>Enable "Developer mode" in the top-right corner</li>
+          <li>Click on "background page" under the ViralAI extension</li>
+          <li>Paste the fix code in the Console tab</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Copy code button
+    document.getElementById('copy-code').addEventListener('click', function() {
+      const codeElement = document.getElementById('fix-code');
+      const range = document.createRange();
+      range.selectNode(codeElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      
+      this.textContent = 'Copied!';
+      setTimeout(() => {
+        this.textContent = 'Copy Code';
+      }, 2000);
+    });
+    
+    // Open ViralAI button
+    document.getElementById('open-viralaiai').addEventListener('click', function() {
+      const statusElement = document.getElementById('open-status');
+      
+      // Try to find the ViralAI extension
+      if (typeof chrome !== 'undefined' && chrome.management) {
+        chrome.management.getAll(function(extensions) {
+          const viralAIExtension = extensions.find(ext => 
+            ext.name.includes('ViralAI') || 
+            ext.description.includes('viral') || 
+            ext.description.includes('YouTube') && ext.description.includes('shorts')
+          );
+          
+          if (viralAIExtension) {
+            chrome.tabs.create({ url: `chrome-extension://${viralAIExtension.id}/popup.html` });
+          } else {
+            statusElement.textContent = 'ViralAI extension not found. Please make sure it is installed.';
+            statusElement.className = 'status error';
+          }
+        });
+      } else {
+        // Fallback for when opened directly in browser
+        statusElement.textContent = 'Please open this page in Chrome and make sure the ViralAI extension is installed.';
+        statusElement.className = 'status error';
+      }
+    });
+  </script>
+</body>
+</html>

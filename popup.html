@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ViralAI - YouTube to Shorts Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="popup.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-fire-alt"></i> ViralAI</h1>
+      <p>Turn YouTube videos into viral shorts</p>
+      <div class="credits">
+        <span id="credits-value">1000</span> credits
+      </div>
+    </div>
+
+    <div id="not-youtube" class="message">
+      <p><i class="fas fa-info-circle"></i> Please navigate to a YouTube video to use this extension.</p>
+    </div>
+
+    <div id="youtube-detected" class="hidden">
+      <div class="video-info">
+        <h2 id="video-title"><i class="fab fa-youtube"></i> <span>Video Title</span></h2>
+        <p id="video-duration"><i class="far fa-clock"></i> Duration: <span id="duration-value">0:00</span></p>
+      </div>
+
+      <div class="options">
+        <h3><i class="fas fa-sliders-h"></i> Customize Your Short</h3>
+        <div class="option-group">
+          <label for="short-duration"><i class="fas fa-hourglass-half"></i> Duration (seconds):</label>
+          <input type="number" id="short-duration" min="5" max="60" value="15">
+        </div>
+
+        <div class="option-group">
+          <label for="ai-style"><i class="fas fa-magic"></i> AI Style:</label>
+          <select id="ai-style">
+            <option value="funny">Funny</option>
+            <option value="dramatic">Dramatic</option>
+            <option value="informative">Informative</option>
+            <option value="inspirational">Inspirational</option>
+          </select>
+        </div>
+
+        <div class="option-group">
+          <label for="caption-style"><i class="fas fa-closed-captioning"></i> Caption Style:</label>
+          <select id="caption-style">
+            <option value="minimal">Minimal</option>
+            <option value="bold">Bold</option>
+            <option value="subtitle">Subtitle</option>
+          </select>
+        </div>
+
+        <div class="option-group toggle-group">
+          <label for="viral-detection"><i class="fas fa-virus"></i> Viral Detection:</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="viral-detection" checked>
+            <span class="toggle-slider"></span>
+          </div>
+          <span class="toggle-label">AI-powered viral segment detection</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="create-short" class="primary-btn"><i class="fas fa-wand-magic-sparkles"></i> Create Viral Short</button>
+        <button id="download-full-video" class="secondary-btn"><i class="fas fa-download"></i> Download Full Video</button>
+      </div>
+
+      <div class="debug-actions">
+        <button id="reset-api-keys" class="debug-btn"><i class="fas fa-key"></i> Reset API Keys</button>
+        <button id="test-sieve-connection" class="debug-btn"><i class="fas fa-plug"></i> Test Sieve Connection</button>
+        <button id="reset-and-test" class="debug-btn"><i class="fas fa-sync"></i> Reset & Test</button>
+      </div>
+
+      <div class="purchase-credits section">
+        <h3><i class="fas fa-coins"></i> Purchase Credits</h3>
+        <p class="section-description">Select a package to add credits to your account.</p>
+        <div class="credit-packages">
+          <div class="credit-package card">
+            <h4 class="package-name">Basic</h4>
+            <p class="package-credits">100 credits</p>
+            <p class="package-price">$5</p>
+            <button class="purchase-btn primary-btn" data-price-id="price_basic_placeholder">Purchase</button>
+          </div>
+          <div class="credit-package card">
+            <h4 class="package-name">Standard</h4>
+            <p class="package-credits">500 credits</p>
+            <p class="package-price">$20</p>
+            <button class="purchase-btn primary-btn" data-price-id="price_standard_placeholder">Purchase</button>
+          </div>
+          <div class="credit-package card">
+            <h4 class="package-name">Premium</h4>
+            <p class="package-credits">1000 credits</p>
+            <p class="package-price">$30</p>
+            <button class="purchase-btn primary-btn" data-price-id="price_premium_placeholder">Purchase</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result" class="hidden">
+        <h3><i class="fas fa-check-circle"></i> Your Viral Shorts are Ready!</h3>
+        <div class="carousel-container">
+          <button id="prev-short" class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <div class="carousel">
+            <div id="shorts-container" class="shorts-container">
+              <!-- Shorts will be added here dynamically -->
+            </div>
+          </div>
+          <button id="next-short" class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="carousel-indicators" id="carousel-indicators">
+          <!-- Indicators will be added here dynamically -->
+        </div>
+
+        <div id="viral-info" class="viral-info hidden">
+          <h4><i class="fas fa-virus"></i> Why This Segment Is Viral</h4>
+          <p id="viral-reason" class="viral-reason"></p>
+          <div class="transcript-segment">
+            <h5>Transcript Segment:</h5>
+            <p id="transcript-text" class="transcript-text"></p>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button id="download-short" class="primary-btn"><i class="fas fa-download"></i> Download Short (1 credit)</button>
+          <button id="share-short" class="secondary-btn"><i class="fas fa-share-alt"></i> Share</button>
+          <div class="tiktok-section">
+            <h4>Schedule on TikTok</h4>
+            <div class="option-group">
+              <label for="tiktok-caption"><i class="fas fa-comment-alt"></i> TikTok Caption:</label>
+              <input type="text" id="tiktok-caption" placeholder="Add your TikTok caption here...">
+            </div>
+            <div class="option-group">
+              <label for="schedule-time"><i class="far fa-calendar-alt"></i> Schedule Time:</label>
+              <input type="datetime-local" id="schedule-time">
+            </div>
+            <button id="schedule-tiktok" class="tiktok-btn"><i class="fab fa-tiktok"></i> Schedule on TikTok (1 credit)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="ping.js"></script>
+  <script src="popup-nonmodule.js"></script>
+</body>
+</html>

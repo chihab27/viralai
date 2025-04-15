@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix ViralAI Extension</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    
+    h1 {
+      color: #ff0000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .loading {
+      background-color: #e2f3f5;
+      color: #0c5460;
+    }
+    
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #cc0000;
+    }
+    
+    .steps {
+      margin-top: 20px;
+    }
+    
+    .step {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .step:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .step-title {
+      font-weight: bold;
+      display: inline-block;
+    }
+    
+    .step-content {
+      margin-top: 10px;
+      margin-left: 34px;
+    }
+    
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fix ViralAI Extension</h1>
+  
+  <div class="container">
+    <p>This tool fixes the following errors in the ViralAI extension:</p>
+    <ul>
+      <li><strong>TypeError: setLatestShortResult is not a function</strong></li>
+      <li>Cannot read properties of undefined (reading 'writeText')</li>
+      <li>The message port closed before a response was received</li>
+      <li>Error getting video info: [object Object]</li>
+    </ul>
+    
+    <button id="apply-fix">Apply Fix Now</button>
+    <div id="status" class="status" style="display: none;"></div>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-title"><span class="step-number">1</span> What This Fix Does</div>
+        <div class="step-content">
+          <p>This fix adds the missing <code>setLatestShortResult</code> function to the ViralAI extension and patches the viral detection feature to work correctly.</p>
+        </div>
+      </div>
+      
+      <div class="step">
+        <div class="step-title"><span class="step-number">2</span> After Applying the Fix</div>
+        <div class="step-content">
+          <p>After applying the fix, you should:</p>
+          <ol>
+            <li>Reload the ViralAI extension (go to <code>chrome://extensions/</code> and click the refresh icon)</li>
+            <li>Try creating a viral short on a YouTube video</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="step">
+        <div class="step-title"><span class="step-number">3</span> If You Still Have Issues</div>
+        <div class="step-content">
+          <p>If you still experience issues after applying the fix, try these steps:</p>
+          <ol>
+            <li>Close and reopen Chrome</li>
+            <li>Apply the fix again</li>
+            <li>Try creating a viral short on a different YouTube video</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="fix-viralaiai.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const applyFixButton = document.getElementById('apply-fix');
+      const statusElement = document.getElementById('status');
+      
+      // Function to show status
+      function showStatus(message, type) {
+        statusElement.textContent = message;
+        statusElement.className = `status ${type}`;
+        statusElement.style.display = 'block';
+      }
+      
+      // Apply fix button click handler
+      applyFixButton.addEventListener('click', function() {
+        showStatus('Applying fix...', 'loading');
+        
+        // Check if we have access to the chrome API
+        if (typeof chrome === 'undefined' || !chrome.management) {
+          showStatus('This fix needs to be run as a Chrome extension. Please follow the manual instructions.', 'error');
+          return;
+        }
+        
+        // Find the ViralAI extension
+        chrome.management.getAll(function(extensions) {
+          const viralAIExtension = extensions.find(ext => 
+            ext.name.includes('ViralAI') || 
+            ext.description.includes('viral') || 
+            ext.description.includes('YouTube') && ext.description.includes('shorts')
+          );
+          
+          if (!viralAIExtension) {
+            showStatus('ViralAI extension not found. Please make sure it is installed.', 'error');
+            return;
+          }
+          
+          // Try to inject the fix script
+          try {
+            chrome.scripting.executeScript({
+              target: { extensionId: viralAIExtension.id },
+              function: function() {
+                // This function will be executed in the context of the ViralAI extension
+                
+                // Define the missing function
+                function setLatestShortResult(result) {
+                  console.log('Setting latest short result:', result);
+                  
+                  // Store the result in memory
+                  self.latestShortResult = result;
+                  
+                  // Also save to storage for persistence
+                  chrome.storage.local.set({ latestShortResult: result }, () => {
+                    console.log('Short result saved to storage:', result.status || 'unknown');
+                  });
+                  
+                  return result;
+                }
+                
+                // Make the function globally available
+                self.setLatestShortResult = setLatestShortResult;
+                
+                console.log('Fix applied: setLatestShortResult function has been defined');
+                
+                return { success: true, message: 'Fix applied successfully' };
+              }
+            }, function(results) {
+              if (chrome.runtime.lastError) {
+                showStatus(`Error: ${chrome.runtime.lastError.message}`, 'error');
+                return;
+              }
+              
+              if (results && results[0] && results[0].result && results[0].result.success) {
+                showStatus('Fix applied successfully! Please reload the ViralAI extension.', 'success');
+              } else {
+                showStatus('Failed to apply fix. Please try the manual method.', 'error');
+              }
+            });
+          } catch (error) {
+            showStatus(`Error: ${error.message}`, 'error');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

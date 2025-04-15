@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViralAI Extension Fixes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    
+    h1 {
+      color: #ff0000;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .step {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .step:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .step-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .step-content {
+      margin-left: 40px;
+    }
+    
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: #cc0000;
+    }
+    
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .loading {
+      background-color: #e2f3f5;
+      color: #0c5460;
+    }
+    
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
+    .file-list {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    
+    .file-item {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ViralAI Extension Fixes</h1>
+  
+  <div class="container">
+    <div class="step">
+      <div class="step-title"><span class="step-number">1</span> Check Current Installation</div>
+      <div class="step-content">
+        <p>First, let's check if your ViralAI extension is properly installed and accessible.</p>
+        <button id="check-extension">Check Extension</button>
+        <div id="check-status" class="status"></div>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">2</span> Download Fix Files</div>
+      <div class="step-content">
+        <p>Download the following fix files to your computer:</p>
+        <div class="file-list">
+          <div class="file-item">
+            <code>viral-detection-fix.js</code> - Fixes the viral detection feature
+            <button class="download-file" data-file="viral-detection-fix.js">Download</button>
+          </div>
+          <div class="file-item">
+            <code>background-worker-patch.js</code> - Patches the background worker
+            <button class="download-file" data-file="background-worker-patch.js">Download</button>
+          </div>
+          <div class="file-item">
+            <code>secure-api-storage.js</code> - Implements secure API key storage
+            <button class="download-file" data-file="secure-api-storage.js">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">3</span> Apply Fixes</div>
+      <div class="step-content">
+        <p>Follow these steps to apply the fixes:</p>
+        <ol>
+          <li>Open Chrome and go to <code>chrome://extensions/</code></li>
+          <li>Find the ViralAI extension and click "Details"</li>
+          <li>Click "Extension files" to open the extension directory</li>
+          <li>Copy the downloaded fix files to the extension directory</li>
+          <li>Reload the extension by clicking the refresh icon</li>
+        </ol>
+        <p>Alternatively, you can use the automatic installation:</p>
+        <button id="apply-fixes">Apply Fixes Automatically</button>
+        <div id="apply-status" class="status"></div>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title"><span class="step-number">4</span> Verify Installation</div>
+      <div class="step-content">
+        <p>After applying the fixes, let's verify that they are working correctly:</p>
+        <button id="verify-fixes">Verify Fixes</button>
+        <div id="verify-status" class="status"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module">
+    import { applyAllFixes, applyViralDetectionFix, applyBackgroundWorkerFix, applySecureApiStorageFix } from './install-fixes.js';
+    
+    // Check extension button
+    document.getElementById('check-extension').addEventListener('click', async () => {
+      const statusElement = document.getElementById('check-status');
+      statusElement.className = 'status loading';
+      statusElement.textContent = 'Checking extension...';
+      
+      try {
+        // Check if the extension is installed
+        if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id) {
+          statusElement.className = 'status success';
+          statusElement.textContent = 'Extension found! ID: ' + chrome.runtime.id;
+        } else {
+          statusElement.className = 'status error';
+          statusElement.textContent = 'Extension not found or not accessible.';
+        }
+      } catch (error) {
+        statusElement.className = 'status error';
+        statusElement.textContent = 'Error checking extension: ' + error.message;
+      }
+    });
+    
+    // Download file buttons
+    document.querySelectorAll('.download-file').forEach(button => {
+      button.addEventListener('click', async () => {
+        const fileName = button.getAttribute('data-file');
+        
+        try {
+          // Get the file content
+          const response = await fetch(fileName);
+          const content = await response.text();
+          
+          // Create a blob and download it
+          const blob = new Blob([content], { type: 'text/javascript' });
+          const url = URL.createObjectURL(blob);
+          
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = fileName;
+          a.click();
+          
+          URL.revokeObjectURL(url);
+          
+          button.textContent = 'Downloaded';
+          button.disabled = true;
+        } catch (error) {
+          console.error('Error downloading file:', error);
+          button.textContent = 'Error';
+        }
+      });
+    });
+    
+    // Apply fixes button
+    document.getElementById('apply-fixes').addEventListener('click', async () => {
+      const statusElement = document.getElementById('apply-status');
+      statusElement.className = 'status loading';
+      statusElement.textContent = 'Applying fixes...';
+      
+      try {
+        const result = await applyAllFixes();
+        
+        if (result) {
+          statusElement.className = 'status success';
+          statusElement.textContent = 'Fixes applied successfully! Please reload the extension.';
+        } else {
+          statusElement.className = 'status error';
+          statusElement.textContent = 'Failed to apply some fixes. Please try the manual installation.';
+        }
+      } catch (error) {
+        statusElement.className = 'status error';
+        statusElement.textContent = 'Error applying fixes: ' + error.message;
+      }
+    });
+    
+    // Verify fixes button
+    document.getElementById('verify-fixes').addEventListener('click', async () => {
+      const statusElement = document.getElementById('verify-status');
+      statusElement.className = 'status loading';
+      statusElement.textContent = 'Verifying fixes...';
+      
+      try {
+        // Check if the viral detection fix is applied
+        const viralDetectionResponse = await fetch('viral-detection-fix.js');
+        const viralDetectionExists = viralDetectionResponse.ok;
+        
+        // Check if the secure API storage fix is applied
+        const secureApiStorageResponse = await fetch('secure-api-storage.js');
+        const secureApiStorageExists = secureApiStorageResponse.ok;
+        
+        if (viralDetectionExists && secureApiStorageExists) {
+          statusElement.className = 'status success';
+          statusElement.textContent = 'Fixes verified successfully! The extension should now work correctly.';
+        } else {
+          statusElement.className = 'status error';
+          statusElement.textContent = 'Some fixes are missing. Please check the installation.';
+        }
+      } catch (error) {
+        statusElement.className = 'status error';
+        statusElement.textContent = 'Error verifying fixes: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>
